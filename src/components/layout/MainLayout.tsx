@@ -8,7 +8,7 @@ import { useTranslation } from "@/utils/translations";
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [username] = useState("John Doe");
+  const [username] = useState("Sofia");
   const { language, setLanguage } = useLanguage();
   const t = useTranslation(language);
 
