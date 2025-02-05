@@ -1,6 +1,11 @@
 import { Card } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/utils/translations";
 
 const Gallery = () => {
+  const { language } = useLanguage();
+  const t = useTranslation(language);
+
   const photos = [
     "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
@@ -18,7 +23,7 @@ const Gallery = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Photo Gallery</h1>
+      <h1 className="text-3xl font-bold">{t("photoGallery")}</h1>
       <div className="masonry-grid">
         {photos.map((photo, index) => (
           <Card key={index} className="mb-4 overflow-hidden">

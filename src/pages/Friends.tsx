@@ -2,8 +2,12 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/utils/translations";
 
 const Friends = () => {
+  const { language } = useLanguage();
+  const t = useTranslation(language);
   const [searchQuery, setSearchQuery] = useState("");
 
   const friends = [
@@ -26,12 +30,12 @@ const Friends = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Friends</h1>
+      <h1 className="text-3xl font-bold">{t("friends")}</h1>
       
       <div className="relative">
         <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Search friends..."
+          placeholder={t("searchFriends")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-10"

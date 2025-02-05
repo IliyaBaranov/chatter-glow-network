@@ -1,16 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/utils/translations";
 
 const Settings = () => {
+  const { language } = useLanguage();
+  const t = useTranslation(language);
+
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Settings</h1>
+      <h1 className="text-3xl font-bold">{t("settings")}</h1>
       <Card>
         <CardHeader>
-          <CardTitle>Your Settings</CardTitle>
+          <CardTitle>{t("yourSettings")}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">
-            Manage your account settings and preferences.
+            {t("settingsDesc")}
           </p>
         </CardContent>
       </Card>
