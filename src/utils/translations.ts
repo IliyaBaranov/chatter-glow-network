@@ -34,6 +34,7 @@ export const translations: TranslationType = {
     messagesDesc: "Connect with your friends through messages.",
     yourSettings: "Your Settings",
     settingsDesc: "Manage your account settings and preferences.",
+    community: "Community"
   },
   ru: {
     welcome: "Добро пожаловать",
@@ -64,6 +65,7 @@ export const translations: TranslationType = {
     messagesDesc: "Общайтесь с друзьями через сообщения.",
     yourSettings: "Ваши настройки",
     settingsDesc: "Управляйте настройками вашего аккаунта.",
+    community: "Сообщество"
   },
 };
 

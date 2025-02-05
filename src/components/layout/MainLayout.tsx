@@ -31,7 +31,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="fixed h-screen w-64 bg-card border-r p-4">
           <div className="flex flex-col h-full">
             <div className="space-y-2">
-              <div className="text-xl font-semibold p-2">Community</div>
+              <div className="text-xl font-semibold p-2">{t("community")}</div>
               <div className="text-sm text-muted-foreground px-2">
                 {t("welcome")}, {username}
               </div>
