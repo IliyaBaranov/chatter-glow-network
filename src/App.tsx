@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import MainLayout from "./components/layout/MainLayout";
 
 // Pages
@@ -24,91 +25,93 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
-            {/* Protected Routes */}
-            <Route
-              path="/"
-              element={
-                isAuthenticated ? (
-                  <MainLayout>
-                    <Home />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/gallery"
-              element={
-                isAuthenticated ? (
-                  <MainLayout>
-                    <Gallery />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/friends"
-              element={
-                isAuthenticated ? (
-                  <MainLayout>
-                    <Friends />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/messages"
-              element={
-                isAuthenticated ? (
-                  <MainLayout>
-                    <Messages />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/events"
-              element={
-                isAuthenticated ? (
-                  <MainLayout>
-                    <Events />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                isAuthenticated ? (
-                  <MainLayout>
-                    <Settings />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <LanguageProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              
+              {/* Protected Routes */}
+              <Route
+                path="/"
+                element={
+                  isAuthenticated ? (
+                    <MainLayout>
+                      <Home />
+                    </MainLayout>
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/gallery"
+                element={
+                  isAuthenticated ? (
+                    <MainLayout>
+                      <Gallery />
+                    </MainLayout>
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/friends"
+                element={
+                  isAuthenticated ? (
+                    <MainLayout>
+                      <Friends />
+                    </MainLayout>
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/messages"
+                element={
+                  isAuthenticated ? (
+                    <MainLayout>
+                      <Messages />
+                    </MainLayout>
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/events"
+                element={
+                  isAuthenticated ? (
+                    <MainLayout>
+                      <Events />
+                    </MainLayout>
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  isAuthenticated ? (
+                    <MainLayout>
+                      <Settings />
+                    </MainLayout>
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 };

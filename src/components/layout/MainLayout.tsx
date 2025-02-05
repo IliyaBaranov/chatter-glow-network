@@ -1,31 +1,40 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, Image, Users, MessageCircle, Calendar, Settings, LogOut } from "lucide-react";
+import { Home, Image, Users, MessageCircle, Calendar, Settings, LogOut, Languages } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/utils/translations";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [username] = useState("John Doe"); // This will be replaced with actual auth
+  const [username] = useState("John Doe");
+  const { language, setLanguage } = useLanguage();
+  const t = useTranslation(language);
 
   const menuItems = [
-    { icon: Home, label: "Home", path: "/" },
-    { icon: Image, label: "Gallery", path: "/gallery" },
-    { icon: Users, label: "Friends", path: "/friends" },
-    { icon: MessageCircle, label: "Messages", path: "/messages" },
-    { icon: Calendar, label: "Events", path: "/events" },
-    { icon: Settings, label: "Settings", path: "/settings" },
+    { icon: Home, label: t("home"), path: "/" },
+    { icon: Image, label: t("gallery"), path: "/gallery" },
+    { icon: Users, label: t("friends"), path: "/friends" },
+    { icon: MessageCircle, label: t("messages"), path: "/messages" },
+    { icon: Calendar, label: t("events"), path: "/events" },
+    { icon: Settings, label: t("settings"), path: "/settings" },
   ];
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ru' : 'en');
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <div className="flex">
-        {/* Sidebar */}
         <div className="fixed h-screen w-64 bg-card border-r p-4">
           <div className="flex flex-col h-full">
             <div className="space-y-2">
               <div className="text-xl font-semibold p-2">Community</div>
-              <div className="text-sm text-muted-foreground px-2">Welcome, {username}</div>
+              <div className="text-sm text-muted-foreground px-2">
+                {t("welcome")}, {username}
+              </div>
             </div>
             
             <nav className="space-y-1 mt-8">
@@ -45,20 +54,27 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               })}
             </nav>
 
-            <div className="mt-auto">
+            <div className="mt-auto space-y-2">
+              <Button
+                variant="outline"
+                className="w-full justify-start"
+                onClick={toggleLanguage}
+              >
+                <Languages className="mr-2 h-4 w-4" />
+                {language === 'en' ? 'English' : 'Русский'}
+              </Button>
               <Button
                 variant="ghost"
                 className="w-full justify-start text-destructive hover:text-destructive"
                 onClick={() => navigate("/login")}
               >
                 <LogOut className="mr-2 h-4 w-4" />
-                Logout
+                {t("logout")}
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Main content */}
         <div className="ml-64 flex-1 p-8">
           <div className="page-transition">
             {children}
